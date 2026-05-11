@@ -26,6 +26,6 @@ func CariInvestasi() {
 	}
 
 	if !ditemukan {
-		fmt.Println("Investasi tidak ditemukan")
+		fmt.Println("Investasi tidak ditemukan.")
 	}
 }
