@@ -6,6 +6,9 @@ import (
 )
 
 func main() {
+	
+	logical.LoadDariFile()
+	
 	for {
 		logical.ClearScreen()
 		fmt.Println("=== APLIKASI MANAJEMEN INVESTASI ===")
