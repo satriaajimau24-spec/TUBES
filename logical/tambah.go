@@ -25,5 +25,7 @@ func TambahInvestasi() {
 	fmt.Scanln(&inv.NilaiKini)
 
 	DataInvestasi = append(DataInvestasi, inv)
+	SimpanKeFile()
+	
 	fmt.Println("✓ Investasi berhasil ditambahkan!")
 }
