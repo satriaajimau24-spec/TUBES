@@ -20,11 +20,11 @@ func Statistik() {
 
 	for _, inv := range DataInvestasi {
 		switch inv.Jenis {
-		case "Saham":
+		case "Saham", "saham":
 			saham++
-		case "Obligasi":
+		case "Obligasi", "obligasi":
 			obligasi++
-		case "ReksaDana":
+		case "ReksaDana", "reksadana":
 			reksadana++
 		}
 	}
