@@ -10,7 +10,6 @@ import (
 
 const namaFile = "database_investasi.txt"
 
-// Fungsi Simpan: Mengubah data array menjadi teks lalu ditulis ke file .txt
 func SimpanKeFile() {
 	var semuaTeks string
 	for _, inv := range DataInvestasi {
@@ -19,24 +18,22 @@ func SimpanKeFile() {
 	_ = os.WriteFile(namaFile, []byte(semuaTeks), 0644)
 }
 
-// Fungsi Ambil: Membaca file .txt saat program pertama kali dibuka
 func LoadDariFile() {
 	isiFile, err := os.ReadFile(namaFile)
 	if err != nil {
-		return // Jika file belum ada, abaikan saja
+		return
 	}
 
 	baris := strings.Split(string(isiFile), "\n")
-	DataInvestasi = []Investasi{} // Reset data di memory sebelum diisi dari file
+	DataInvestasi = []Investasi{}
 
 	for _, b := range baris {
-		b = strings.TrimSpace(b) // Bersihkan spasi gaib atau enter rusak
+		b = strings.TrimSpace(b)
 		if b == "" {
 			continue
 		}
 		p := strings.Split(b, ",")
 
-		// PENGAMAN: Jika potongan data tidak lengkap (kurang dari 5 kolom), SKIP baris ini biar gak crash!
 		if len(p) < 5 {
 			continue
 		}
