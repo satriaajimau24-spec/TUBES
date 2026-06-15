@@ -6,8 +6,7 @@ import (
 )
 
 func main() {
-
-	logical.LoadDariFile()
+	logical.MuatData()
 
 	for {
 		logical.ClearScreen()
@@ -22,9 +21,7 @@ func main() {
 		fmt.Println("8. Statistik")
 		fmt.Println("9. Keluar")
 
-		pilihan := logical.GetInput("\nPilih menu (1-9): ")
-
-		switch pilihan {
+		switch logical.GetInput("\nPilih menu (1-9): ") {
 		case "1":
 			logical.TambahInvestasi()
 		case "2":

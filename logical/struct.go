@@ -9,3 +9,5 @@ type Investasi struct {
 }
 
 var DataInvestasi []Investasi
+
+const DataFile = "logical/dataInvestasi.txt"

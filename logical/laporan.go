@@ -1,3 +1,4 @@
+// logical/laporan.go
 package logical
 
 import (
@@ -18,19 +19,26 @@ func LaporanPortofolio() {
 
 	for _, inv := range DataInvestasi {
 		switch inv.Jenis {
-		case "Saham", "saham":
+		case "Saham":
 			saham += inv.NilaiKini
-		case "Obligasi", "obligasi":
+		case "Obligasi":
 			obligasi += inv.NilaiKini
-		case "ReksaDana", "reksadana":
+		case "ReksaDana":
 			reksadana += inv.NilaiKini
 		}
 	}
 
 	total := saham + obligasi + reksadana
 
+	persen := func(nilai float64) float64 {
+		if total == 0 {
+			return 0
+		}
+		return (nilai / total) * 100
+	}
+
 	fmt.Printf("\nTotal Portofolio: %.2f\n", total)
-	fmt.Printf("Saham: %.2f (%.1f%%)\n", saham, (saham/total)*100)
-	fmt.Printf("Obligasi: %.2f (%.1f%%)\n", obligasi, (obligasi/total)*100)
-	fmt.Printf("ReksaDana: %.2f (%.1f%%)\n", reksadana, (reksadana/total)*100)
+	fmt.Printf("Saham    : %.2f (%.1f%%)\n", saham, persen(saham))
+	fmt.Printf("Obligasi : %.2f (%.1f%%)\n", obligasi, persen(obligasi))
+	fmt.Printf("ReksaDana: %.2f (%.1f%%)\n", reksadana, persen(reksadana))
 }

@@ -1,31 +1,29 @@
 package logical
 
 import (
+	"crypto/rand"
 	"fmt"
-
-	"github.com/google/uuid"
 )
 
+func generateID() string {
+	b := make([]byte, 16)
+	rand.Read(b)
+	return fmt.Sprintf("%08x-%04x-%04x-%04x-%012x",
+		b[0:4], b[4:6], b[6:8], b[8:10], b[10:16])
+}
+
 func TambahInvestasi() {
-	var inv Investasi
-
 	fmt.Println("\n=== TAMBAH INVESTASI ===")
-	inv.ID = uuid.New().String()
 
-	fmt.Print("Nama Aset: ")
-	fmt.Scanln(&inv.Nama)
-
-	fmt.Print("Jenis Aset (Saham/Obligasi/ReksaDana): ")
-	fmt.Scanln(&inv.Jenis)
-
-	fmt.Print("Jumlah Dana: ")
-	fmt.Scanln(&inv.Dana)
-
-	fmt.Print("Nilai Terkini: ")
-	fmt.Scanln(&inv.NilaiKini)
+	inv := Investasi{
+		ID:        generateID(),
+		Nama:      GetInput("Nama Aset: "),
+		Jenis:     GetInput("Jenis Aset (Saham/Obligasi/ReksaDana): "),
+		Dana:      GetFloatInput("Jumlah Dana: "),
+		NilaiKini: GetFloatInput("Nilai Terkini: "),
+	}
 
 	DataInvestasi = append(DataInvestasi, inv)
-	SimpanKeFile()
-
-	fmt.Println("✓ Investasi berhasil ditambahkan!")
+	SimpanData()
+	fmt.Println("✓ Investasi berhasil ditambahkan dan disimpan!")
 }
