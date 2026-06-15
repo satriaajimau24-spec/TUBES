@@ -18,11 +18,11 @@ func LaporanPortofolio() {
 
 	for _, inv := range DataInvestasi {
 		switch inv.Jenis {
-		case "Saham":
+		case "Saham", "saham":
 			saham += inv.NilaiKini
-		case "Obligasi":
+		case "Obligasi", "obligasi":
 			obligasi += inv.NilaiKini
-		case "ReksaDana":
+		case "ReksaDana", "reksadana":
 			reksadana += inv.NilaiKini
 		}
 	}
